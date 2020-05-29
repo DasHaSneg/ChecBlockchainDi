@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Шаблоны</h1>
+
+    {% if template_list %}
+    <ul>
+
+      {% for template in template_list %}
+      <li>
+        <a class= "list_templates" href="/chdi/template/{{ template.id }}">{{ template.diplom_name }}</a> ({{template.created}})
+      </li>
+      {% endfor %}
+
+    </ul>
+
+    {% else %}
+      <p>Пока шаблонов нет. Создайте новый шаблон диплома.</p>
+    {% endif %}
+        <a class="buv-c-sumbit-button" href="{% url 'template_create'%}">Создать</a>
+        <a class="buv-c-back-button" href="{% url 'index'%}">Назад</a>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Шаблон</h1>
+
+<p><strong>Описание:</strong> {{ template.diplom_descr}}</p>
+<p><strong>Cотрудник:</strong> {{ template.user_name}}</p>
+<p><strong>Должность сотрудника:</strong> {{ template.user_jobtitle}}</p>
+<p><strong>Наименования диплома:</strong> {{ template.diplom_name }}</p>
+<p><strong>Наимование организации:</strong> {{ template.org_name }}</p>
+<p><strong>Сайт организации:</strong> {{ template.org_url }}</p>
+<p><strong>Почта организации:</strong> {{ template.org_email }}</p>
+<a class="buv-c-sumbit-button" href="/chdi/template/{{ template.id }}/delete">Удалить</a>
+<a class="buv-c-back-button" href="{% url 'templates'%}">Назад</a>
+{% endblock %}
