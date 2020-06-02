@@ -12,12 +12,8 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 import json
 import os
-import logging
+
 import zipfile
-from django.shortcuts import redirect
-from django.core.files import File
-import base64
-from django.contrib.auth.models import User
 
 PREFIX_UID = "urn:uuid:"
 
@@ -60,7 +56,7 @@ from django.views.generic import DetailView
 from django.urls import reverse_lazy
 from django.views import generic
 
-#norm
+
 class TemplateListView(LoginRequiredMixin, generic.ListView):
     """Generic class-based view for a list of templates."""
     model = Template
@@ -70,7 +66,6 @@ class TemplateListView(LoginRequiredMixin, generic.ListView):
 
 class TemplateDetailView(LoginRequiredMixin, DetailView):
     """Generic class-based detail view for a template."""
-    #fields = [ 'diplom_name', 'diplom_descr', 'org_name', 'org_url', 'org_email']
     model = Template
 
 class TemplateDelete(LoginRequiredMixin, DeleteView):
