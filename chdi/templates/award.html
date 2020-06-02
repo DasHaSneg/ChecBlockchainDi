@@ -4,7 +4,9 @@
 
     <!-- Award -->
     {% block award %}
-
+        <div class="issuer-logo">
+            <img src="{{ logoImg }}" alt="Logo"/>
+        </div>
         <div class="certificate-owner">
             <h1>{{ name }}</h1>
         </div>
@@ -12,38 +14,49 @@
         <div class="certificate-meta">
             <span class="certificate-name">{{ title }}</span>
             <span class="issuer-name">{{ organization }}</span>
-            <span class="date-span">{{ subtitle }}</span>
+
         </div>
 
         <div class="certificate-description">
             <p>{{ text }}</p>
+            <p class="date-span">Выдан: {{ issuedOn }}</p>
+        </div>
+        <div class="sinature">
+            <p style="display: inline;">Подписал: {{ sign_job }} {{sign_name}} </p>
+            <img src="{{ signatureImg }}" id="signature-img" alt="Signature"/>
         </div>
 
+
+
     {% endblock %}
-    <div class="verify">
+    <div class="certificate-signature">
+
         <p>{{ organization }} подписал в цифровом виде диплом и выпустил его в блокчейне <span class="chain">{{ award.chain }}.</span></p>
+                <img src="{{ sealImg }}" id="seal-img" alt="Seal" style="max-width: 34%;
+    float: right;"/>
+
+    </div>
+    <div class="verify">
+
         <button id="verify-button" value="{{ verification_info }}" class="buv-c-verify-button_award">Проверить диплом</button>
         {% if ver_responce == 1 %}
-        <span class="verified"><img id="verified-icon" src="/static/img/verified.png" style="max-width: 36px;max-height: 36px;"> Диплом правильный </span>
+        <p class="verified"><img id="verified-icon" src="/static/img/verified.png" style="max-width: 36px;max-height: 36px;"> Диплом правильный </p>
         {% elif ver_responce == 2 %}
-        <span class="not-verified"><img id="recall-icon"
-                                                          src="/static/img/not-verified.png" style="max-width: 36px;max-height: 36px;"> Диплом отозван </span>
+        <p class="not-verified"><img id="recall-icon"
+                                                          src="/static/img/not-verified.png" style="max-width: 36px;max-height: 36px;"> Диплом отозван </p>
         {% else %}
-        <span class="not-verified"><img id="not-verified-icon"
-                                                          src="/static/img/not-verified.png" style="max-width: 36px;max-height: 36px;"> Диплом не правильный </span>
+        <p class="not-verified"><img id="not-verified-icon"
+                                                          src="/static/img/not-verified.png" style="max-width: 36px;max-height: 36px;"> Диплом не правильный </p>
         {% endif %}
     </div>
 
-    <div>
-        <h6 id="progress-msg"></h6>
-    </div>
 
 
 
 
     <div class="issuer-id">
-        <strong>Сайт:</strong> <span class="issuer-id-url"><a href="{{ url }}" target="_blank">{{ url }}</a></span>
-        <strong>Почта:</strong> <span class="issuer-id-url"><a href="{{ email }}" target="_blank">{{ email }}</a></span>
+        <strong>Сайт:</strong> <span class="issuer-id-url"><a style="cursor: pointer;text-decoration: none;color: inherit;font-size: 18px;" href="{{ url }}" target="_blank">{{ url }}</a></span>
+        <strong>Почта:</strong> <span class="issuer-id-url"><a style="cursor: pointer;text-decoration: none;color: inherit;font-size: 18px;" href="{{ email }}" target="_blank">{{ email }}</a></span>
     </div>
 
     <a href="{% url 'index' %}" class="back-button">Проверить другой диплом</a>

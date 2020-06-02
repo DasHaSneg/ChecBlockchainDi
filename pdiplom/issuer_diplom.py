@@ -1,11 +1,11 @@
 import requests
-from pdiplom.create_unsigned_diploms import create_unsigned_diploms_fromfile
+from pdiplom.create_unsigned_diploms import create_unsigned_diploms_from_file
 import logging
 import hashlib
 import base64
 import json
 
-val_url = 'localhost'
+val_url = '54.90.39.144'
 
 def connection_on():
     """Pings Google to see if the internet is on. If online, returns true. If offline, returns false."""
@@ -58,21 +58,21 @@ def broadcast_tx(uid, hashed):
         return response["error"]["data"], True
 
 
-def sign_diplom(roster, template_file):
-    diplom = create_unsigned_diploms_fromfile(roster, template_file)
-    message = {}
-    for uid in diplom.keys():
-        diplom_json = json.dumps(diplom[uid])
+def sign_diploms(roster, template_file):
+    diploms = create_unsigned_diploms_from_file(roster, template_file)
+    messages = {}
+    for uid in diploms.keys():
+        diplom_json = json.dumps(diploms[uid])
         diplom_json_byte = diplom_json.encode()
         hashed = hash_byte_array(diplom_json_byte)
         result, err = broadcast_tx(uid, hashed)
         if err == True:
-            message[uid] = result
+            messages[uid] = result
         else:
-            message[uid] = 'Диплом успешно добавлен'
-        diplom[uid]['signature'] = {
+            messages[uid] = 'Диплом успешно добавлен'
+        diploms[uid]['signature'] = {
             "type": ['Proof', 'Extension'],
             "targetHash": hashed,
         }
 
-    return diplom, message
+    return diploms, messages

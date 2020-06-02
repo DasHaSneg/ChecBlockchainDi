@@ -1,11 +1,37 @@
 {%extends 'base_generic.html' %}
 
 {% block content %}
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
+
+
+
         <table>
         {{ form.as_table }}
         </table>
+        <table>
+            <tbody>
+        <tr>
+            <th>
+                 <label for="id_seal_image" class="labelclass">Выбрать логотип:</label>
+            </th>
+            <td>
+                <span id="namefile" style="text-align: center; display: inherit; height: 20px; font-size: 20px;padding-left: 34px;">Файл не выбран</span>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                 <label for="id_logo_image" class="labelclass">Выбрать печать:</label>
+            </th>
+            <td>
+                <span id="namefile2" style="text-align: center; display: inherit; height: 20px; font-size: 20px;padding-left: 34px;">Файл не выбран</span>
+            </td>
+        </tr>
+            </tbody>
+        </table>
+
+
         <input class="buv-c-sumbit-button" type="submit"  value="Создать" class="buv-c-sumbit-button" />
 
     </form>

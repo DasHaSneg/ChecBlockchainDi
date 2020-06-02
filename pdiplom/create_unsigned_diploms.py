@@ -47,26 +47,18 @@ def instantiate_recipient(cert, recipient):
     if recipient.additional_fields:
         logging.info('Error in csv file, too much fields')
 
-def create_unsigned_diploms_fromfile(roster, template_file):
+def create_unsigned_diploms_from_file(roster, template_file):
     recipients = get_recipients_from_roster(roster)
     template = get_template(template_file)
     issued_on = create_iso8601_tz()
-
-    certs = {}
+    diploms = {}
     for recipient in recipients:
         uid = str(uuid.uuid4())
-
         cert = copy.deepcopy(template)
-
         instantiate_assertion(cert, uid, issued_on)
         instantiate_recipient(cert, recipient)
-        #     return 'Error in csv file, too much fields'
-
-        # validate certificate before writing
-        #schema_validator.validate_v2(cert)
-
-        certs[uid] = cert
-    return certs
+        diploms[uid] = cert
+    return diploms
 
 def get_template(template_file):
         return json.loads(template_file)
