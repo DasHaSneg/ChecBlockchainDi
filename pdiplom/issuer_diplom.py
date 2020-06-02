@@ -1,11 +1,10 @@
 import requests
 from pdiplom.create_unsigned_diploms import create_unsigned_diploms_from_file
-import logging
 import hashlib
 import base64
 import json
 
-val_url = '54.90.39.144'
+val_url = 'localhost'
 
 def connection_on():
     """Pings Google to see if the internet is on. If online, returns true. If offline, returns false."""
@@ -17,16 +16,8 @@ def connection_on():
 
 def connection_rpc_on():
     url = "http://"+ val_url+":26657/status"
-
-    # Example echo method
-    payload = {
-        "method": "echo",
-        "params": ["echome!"],
-        "jsonrpc": "2.0",
-        "id": 0,
-    }
     try:
-        response = requests.post(url).json()
+        requests.post(url).json()
     except requests.exceptions.ConnectionError:
         return False
     return True

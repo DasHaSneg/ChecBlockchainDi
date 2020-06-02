@@ -5,9 +5,6 @@ import json
 import os
 import uuid
 import logging
-
-from cert_schema import schema_validator
-
 from tdiplom.helper import URN_UUID_PREFIX, create_iso8601_tz
 
 
@@ -43,7 +40,6 @@ def instantiate_recipient(cert, recipient):
     cert[profile_field]['type'] = ['RecipientProfile', 'Extension']
     cert[profile_field]['name'] = recipient.name
 
-
     if recipient.additional_fields:
         logging.info('Error in csv file, too much fields')
 
@@ -72,5 +68,3 @@ def get_recipients_from_roster(roster):
             return list(recipients)
     else:
         logging.info('Error csv file is not exist')
-
-

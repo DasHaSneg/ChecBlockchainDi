@@ -1,5 +1,5 @@
 '''
-Creates a certificate template
+Creates a diplom template
 '''
 import uuid
 

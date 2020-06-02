@@ -1,7 +1,6 @@
 import json
 import requests
-from pdiplom.issuer_diplom import hash_byte_array, connection_on, connection_rpc_on
-import logging
+from pdiplom.issuer_diplom import hash_byte_array
 import base64
 from pdiplom.issuer_diplom import val_url
 

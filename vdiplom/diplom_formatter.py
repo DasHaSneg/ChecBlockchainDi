@@ -1,6 +1,4 @@
 import json
-import base64
-import random
 
 def get_formatted_award_and_verification_info(diplom_json, ver_responce, user_id):
     diplom = json.loads(diplom_json)
