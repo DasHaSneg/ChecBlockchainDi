@@ -23,7 +23,7 @@ def index(request):
             error = 'Нет связи с сервером'
             return render(
                 request,
-                'connection_error.html',
+                'info_page.html',
                 {'error': error}
             )
         user_id = request.user.id
