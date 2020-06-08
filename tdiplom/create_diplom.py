@@ -3,13 +3,9 @@ Creates a diplom template
 '''
 import uuid
 
-
 from tdiplom.helper import URN_UUID_PREFIX, encode_image
 
-from cert_schema import OPEN_BADGES_V2_CANONICAL_CONTEXT
-
-OPEN_BADGES_V2_CONTEXT = OPEN_BADGES_V2_CANONICAL_CONTEXT
-
+OPEN_BADGES_V2_CONTEXT = "https://w3id.org/openbadges/v2"
 
 
 class TemplateJson (object):
