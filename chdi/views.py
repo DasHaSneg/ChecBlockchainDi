@@ -24,7 +24,7 @@ def index(request):
             return render(
                 request,
                 'info_page.html',
-                {'error': error}
+                {'message': error}
             )
         user_id = request.user.id
         file = request.FILES['filesjson']
@@ -169,7 +169,7 @@ def sign_template(request):
                 return render(
                     request,
                     'info_page.html',
-                    {'error': error}
+                    {'message': error}
                 )
             template = request.POST['user_template']
             diplom_template = Template.objects.get(pk=template)
